@@ -1,0 +1,58 @@
+{
+    "formList": [{
+        "type": "input/text/checkbox/radio/select",
+        "name": "html元素中得name",
+        "label": "label元素中展示的名",
+        "id": "元素id",
+        "value": "function时为base64编码",
+        "valueType":"string/function"
+        "dataComment": "type为多值时候配置data,radio元素时多个元素的name应该为一致",
+        "placeholder":"",
+        "data": [{
+            "name": "",
+            "id": "",
+            "label": "",
+            "value": "",
+            "checked": "true/false"
+        }],
+        "editAble": "true/false/function(){return true}"
+
+    }],
+    "attachments": [{
+        "title": "附件名称",
+        "url": ""
+    }],
+    "comments": [{
+        "comentText":"处理意见",
+        "commentTime":"处理时间",
+        "commenter":"处理人"
+        }],
+    "tables": [{
+        "id": "",
+        "label":"表格标题",
+        "dataSourceType":"id/index ,id:表示数据包含id，与表格头数据来源的id一致，否则可以配置index，表示为第几列数据",
+        "theader": [{
+            "title": "人员",
+            "columnIndex": "0",
+           
+        }, {
+            "title": "性别",
+            "columnIndex": "1",
+          
+        }, {
+            "title": "年龄",
+            "columnIndex": "1",
+           
+        }],
+        "tbody": [{            
+            "data": ["user1", "1", "13"],
+            "dataComment":"如果配置id，数据格式应为[{'id':'column1',data:""}]"
+        }]
+    }],
+    "postAction": "提交到后台的url,默认提交form元素的 serialize后的json数据",
+    "hiddens": [{
+        "name": "",
+        "value": "",
+        "id": ""
+    }]
+}

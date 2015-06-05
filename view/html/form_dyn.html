@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>移动办公</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0" />
+    <link rel="stylesheet" href="../lib/jquery-mobile/jquery.mobile.css" />
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jquery-cookie/jquery.cookie.js"></script>
+    <script src="../lib/encrypt/encrypt.js"></script>
+    <script src="../lib/json/json2.js"></script>
+    <script src="../lib/hori/hori.js?tag=21369"></script>
+    <script src="../lib/template/template.js"></script>
+    <script src="../config/web/config.js"></script>
+    <script type="text/javascript" src="../lib/base64/base64.js"></script>
+    <style>
+    .form_text {
+        text-align: left;
+        line-height: 2;
+    }
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        htmlJsonStr = {
+            "formList": [{
+                "type": "checkbox",
+                "name": "html元素中得name",
+                "label": "复选",
+                "id": "元素id",
+                "value": "ZnVuY3Rpb24gKCl7cmV0dXJuICJ2YWx1ZSBpcyBmdW5jdGlvbiJ9",
+                "valueType": "function",
+                "dataComment": "type为多值时候配置",
+                "placeholder": "",
+                "data": [{
+                    "name": "checkbox1",
+                    "id": "checkbox1",
+                    "label": "one",
+                    "value": "checkbox1",
+                    "checked": "true"
+                }, {
+                    "name": "checkbox2",
+                    "id": "checkbox2",
+                    "label": "two",
+                    "value": "checkbox2",
+                    "checked": "false"
+                }],
+                "editAble": "true/false/function(){returntrue}"
+            }, {
+                "type": "radio",
+                "name": "radio222name",
+                "label": "单选",
+                "id": "元素id",
+                "value": "ZnVuY3Rpb24gKCl7cmV0dXJuICJ2YWx1ZSBpcyBmdW5jdGlvbiJ9",
+                "valueType": "function",
+                "dataComment": "type为多值时候配置",
+                "placeholder": "",
+                "data": [{
+                    "name": "radio",
+                    "id": "radio1",
+                    "label": "one",
+                    "value": "radio1",
+                    "checked": "true"
+                }, {
+                    "name": "radio",
+                    "id": "radio2",
+                    "label": "two",
+                    "value": "radio2",
+                    "checked": "false"
+                }],
+                "editAble": "true/false/function(){returntrue}"
+            }, {
+                "type": "select",
+                "name": "selectName",
+                "label": "这是select",
+                "id": "selectID1",
+                "value": "ZnVuY3Rpb24gKCl7cmV0dXJuICJ2YWx1ZSBpcyBmdW5jdGlvbiJ9",
+                "valueType": "function",
+                "dataComment": "type为多值时候配置",
+                "placeholder": "",
+                "data": [{
+
+                    "label": "one",
+                    "value": "select1"
+
+                }, {
+                    "label": "two",
+                    "value": "select2"
+                }],
+                "editAble": "true/false/function(){returntrue}"
+            }, {
+                "type": "input",
+                "name": "html元素中得name",
+                "label": "label元素中展示的名",
+                "id": "元素id",
+                "value": "ZnVuY3Rpb24gKCl7cmV0dXJuICJ2YWx1ZSBpcyBmdW5jdGlvbiJ9",
+                "valueType": "function",
+                "dataComment": "type为多值时候配置",
+                "placeholder": "",
+                "data": [],
+                "editAble": "true/false/function(){returntrue}"
+            }, {
+                "type": "text",
+                "name": "html元素中得name",
+                "label": "label元素中展示的名",
+                "id": "元素id",
+                "value": "ZnVuY3Rpb24gKCl7cmV0dXJuICJ2YWx1ZSBpcyBmdW5jdGlvbiJ9",
+                "valueType": "string",
+                "dataComment": "type为多值时候配置",
+                "placeholder": "",
+                "data": [],
+                "editAble": "true/false/function(){returntrue}"
+            },{
+                "type": "input",
+                "name": "inputName78",
+                "label": "新增1",
+                "id": "元素id11",
+                "value": "7777",
+                "valueType": "string",
+                "dataComment": "type为多值时候配置",
+                "placeholder": "",
+                "data": [],
+                "editAble": "true/false/function(){returntrue}"
+            }],
+            "attachments": [{
+                "title": "附件名称",
+                "url": ""
+            },{
+                "title": "附件名称1",
+                "url": "1"
+            }],
+            "comments": [{
+                "comentText":"处理意见",
+                "commentTime":"处理时间",
+                "commenter":"处理人"
+            },{
+                "comentText":"处理意见1",
+                "commentTime":"处理时间2",
+                "commenter":"处理人3"
+            }],
+            "tables": [{
+                "id": "table1",
+                "label": "普通表格1",
+                "dataSourceType": "index",
+                "theader": [{
+                    "title": "人员",
+                    "columnIndex": "0"
+
+                }, {
+                    "title": "性别",
+                    "columnIndex": "1"
+                }, {
+                    "title": "年龄",
+                    "columnIndex": "3"
+                }],
+                "tbody": [{
+                    "data": ["user1", "男", "131","11"]
+                }, {
+                    "data": ["user2", "男", "132","22"]
+                }, {
+                    "data": ["user3", "女", "133","33"]
+                }]
+            }],
+            "postAction": "提交到后台的url,默认提交form元素的serialize后的json数据",
+            "hiddens": [{
+                "name": "hidden1",
+                "value": "11",
+                "id": "hidden_id"
+            }]
+        };
+
+        /*artTemplate 不支持嵌套计算，
+        @param rowdata数组数据
+        @param columnIndex 返回第几列
+        */
+        template.helper('tbodyFormat', function(rowData, columnIndex) {
+
+            // console.log(rowData);
+            // console.log(columnIndex);
+            return rowData[columnIndex]
+        });
+
+
+
+        // console.log(htmlJsonStr);
+        //处理相关函数返回值
+        var parseFormValue = function(htmlJsonObj) {
+            var formList = htmlJsonObj.formList;
+            for (var i = 0; i < formList.length; i++) {
+                var formValue = formList[i].value;
+                var valeType = formList[i].valueType;
+                if (valeType.toLowerCase() == "function") {
+                    try {
+                        console.log("解码后函数=" + Base64.decode(formValue));
+                        eval("var tempFunction=" + Base64.decode(formValue));
+
+                        var tempValue = tempFunction.apply();
+                        // throw new Excption("run parse Excption");
+                        formList[i].value = tempValue;
+
+                    } catch (e) {
+                        alert("执行函数异常,函数体：" + Base64.decode(formValue));
+                        formList[i].value = "evalError";
+                        if (e.stack) {
+                            console.log(e.stack);
+                            return;
+                        }
+
+                    }
+
+
+                }
+            }
+        }
+
+        // var htmlJson = JSON.parse(htmlJsonStr);
+
+        var htmlJson = htmlJsonStr;
+
+        
+        //首先计算返回值是函数的，返回标准的json，json不支持function
+        parseFormValue(htmlJson);
+        var html = template('form_tmpl', htmlJson);
+        
+        $("#ul_formInfo").html(html);
+        //table
+        var tableHtml=template('form_tableTemp', htmlJson);
+        $("#form_table").html(tableHtml);
+        //附件
+        var attachmentHtml=template('form_attachmentTemp', htmlJson);
+        $("#form_attachment").html(attachmentHtml);
+        //处理意见
+        
+        var commentHtml= template('form_commentTemp', htmlJson);
+        $("#form_comment").html(commentHtml);
+        //隐藏字段
+
+        var hiddenHtml=template('form_hiddenTemp', htmlJson);
+        $("#formHidden").html(hiddenHtml);
+
+
+        var script = document.creat
+        var jqscript = document.createElement("script");
+        // jqscript.src="../lib/jquery-mobile/jquery.mobile.min.js";
+        jqscript.src = "../lib/jquery-mobile/jquery.mobile-1.4.5.js";
+
+        $("head").after(jqscript);
+
+    })
+    </script>
+</head>
+
+<body>
+    <!-- 登录页面 -->
+    <div data-role="page" id="login" class="login">
+        <div class="container" align="center">
+            <form action="" id="form_dyn">
+                <ul class="ui-listview ui-corner-all ui-shadow" id="ul_formInfo">
+                    <script id="form_tmpl" type="text/html">
+                        <li class="ui-li-divider ui-bar-a ui-first-child">表单信息</li>
+                        {{each formList as element index}}
+                        <li>
+                            {{if element.type=="input"}}
+                            <div class="ui-field-contain">
+                                <label for="{{element.id}}">{{element.label}}:</label>
+                                <input type="text" name="{{element.name}}" id="{{element.id}}" placeholder="{{element.placeholder}}" value="{{element.value}}">
+                            </div>
+                            {{else if element.type=="text"}}
+                            <div class="ui-field-contain">
+                                <label for="{{element.id}}">{{element.label}}:22</label>
+                                <div class="form_text">{{element.value}}</div>
+                            </div>
+                            {{else if element.type=="checkbox"}}
+                            <div class="ui-field-contain">
+                                <fieldset data-role="controlgroup" data-type="horizontal">
+                                    <legend>{{element.label}}:</legend>
+                                    {{each element.data as checkboxElement index}}
+                                    <input type="checkbox" name="{{checkboxElement.name}}" id="{{checkboxElement.id}}" {{if checkboxElement.checked=="true" }}checked{{else}} {{/if}}>
+                                    <label for="{{checkboxElement.id}}">{{checkboxElement.label}}</label>
+                                    {{/each}}
+                                </fieldset>
+                            </div>
+                            {{else if element.type=="radio"}}
+                            <div class="ui-field-contain">
+                                <fieldset data-role="controlgroup" data-type="horizontal">
+                                    <legend>{{element.label}}:</legend>
+                                    {{each element.data as radioElement index}}
+                                    <input type="radio" name="{{radioElement.name}}" id="{{radioElement.id}}" {{if radioElement.checked=="true" }}checked{{else}} {{/if}}>
+                                    <label for="{{radioElement.id}}">{{radioElement.label}}</label>
+                                    {{/each}}
+                                </fieldset>
+                            </div>
+                            {{else if element.type=="select"}}
+                            <div class="ui-field-contain">
+                                <label for="{{element.id}}">{{element.label}}</label>
+                                <select name="{{element.name}}" id="{{element.id}}" data-mini="true">
+                                    {{each element.data as selectElement index}}
+                                    <option value="{{selectElement.value}}">{{selectElement.label}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            {{else}}
+                            <div class="ui-field-contain">
+                                <label for="{{element.id}}">{{element.label}}:11</label>
+                                <div class="form_text">{{element.value}}</div>
+                            </div>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                    </script>
+                </ul>
+                
+                <ul class="ui-listview ui-corner-all ui-shadow" id="form_table">
+                  <script type="text/html" id="form_tableTemp">
+                    {{each tables as table index}}
+                    <li class="ui-li-divider ui-bar-a ui-first-child">{{table.label}}</li>
+                    <li>
+                        <table class="ui-responsive ui-table ui-table-reflow" id="{{table.id}}">
+                            <thead>
+                                <tr>
+                                    {{each table.theader as rowheader index}}
+                                    <th>{{rowheader.title}}--{{index}}</th>
+                                    {{/each}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {{each table.tbody as rowBody index}}
+                                    <tr>
+                                    <!-- 该处数据格式,需要取表头配置信息的数据源，确定数据对应的表头是第几列[{            
+                                        "data": ["user1", "1", "13"],
+                                        "dataComment":"如果配置id，数据格式应为[{'id':'column1',data:""}]"
+                                        }]-->
+                                        {{each table.theader as rowheader index}}
+                                         {{if index==0}}
+                                            <th><b class="ui-table-cell-label">{{rowheader.title}}</b>{{ rowBody.data | tbodyFormat:rowheader.columnIndex}}</th>
+                                         {{else}}
+                                         <td><b class="ui-table-cell-label">{{rowheader.title}}</b>{{ rowBody.data | tbodyFormat:rowheader.columnIndex}}</td>
+                                         {{/if}}
+                                        
+                                        {{/each}} 
+                                    </tr>   
+                                {{/each}}
+                                
+                            </tbody>
+                        </table>
+                    </li>
+                    {{/each}}
+                </script>
+                </ul>
+                <ul class="ui-listview ui-corner-all ui-shadow" >
+                    <li class="ui-li-divider ui-bar-a ui-first-child">附件</li>
+                    <li>
+                        <ul class="ui-listview" id="form_attachment">
+                         <script type="text/html" id="form_attachmentTemp">
+                             {{each attachments as attachment index}}
+                             <li><a href="{{attachment.url}}" class="ui-btn ui-btn-icon-right ui-icon-carat-r">{{attachment.title}}</a></li>
+                             {{/each}}
+                         </script>            
+                            
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="ui-listview ui-corner-all ui-shadow" >
+                    <li class="ui-li-divider ui-bar-a ui-first-child">流转意见</li>
+                    <li>
+                        <ul class="ui-listview" id="form_comment">
+                         <script type="text/html" id="form_commentTemp">
+                          {{each comments as comment index}}
+                            <li class="ui-li-static ui-body-inherit ui-first-child">
+                                <p>处理意见：{{comment.comentText}}</p>
+                                <p>处理人：{{comment.commenter}}</p>
+                                <p>处理时间：{{comment.commentTime}}</p>
+                            </li>
+                          {{/each}}
+                         </script>            
+                           
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 隐藏字段 -->
+                <div id="formHidden">
+                    <script type="text/html" id="form_hiddenTemp">
+                         {{each hiddens as hiddenField index}}
+                            <input type="hidden" id="{{hiddenField.id}}" name="{{hiddenField.name}}" value="{{hiddenField.value}}"></input>
+                         {{/each}}
+                    </script>   
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
